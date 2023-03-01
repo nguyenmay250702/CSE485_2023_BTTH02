@@ -1,5 +1,5 @@
 <?php
-class  Aricle{
+class  Article{
 private $ma_bviet;
 private $ma_tgia;
 private $ma_tloai;
