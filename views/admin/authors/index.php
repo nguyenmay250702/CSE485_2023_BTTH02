@@ -1,11 +1,11 @@
 <?php
-require_once('');
-require_once('');
+require_once('views/layouts/header_admin.php');
 ?>
+
 <main class="container mt-5 mb-5">
     <div class="row">
         <div class="col-sm">
-            <a href="add_author.php" class="btn btn-success">Thêm mới</a>
+            <a href="?controller=author&action=add_author" class="btn btn-success">Thêm mới</a>
             <table class="table">
                 <thead>
                     <tr>
@@ -18,7 +18,7 @@ require_once('');
                 </thead>
                 <tbody>
                     <?php
-                    $authors = executeResult("SELECT * FROM tacgia"); //mảng 2 chiều
+                    $authors = $authorService->getAll("SELECT * FROM tacgia"); //mảng 2 chiều
                     $dem = 1;
                     foreach ($authors as $author) {
                         ?>
@@ -27,16 +27,16 @@ require_once('');
                                 <?= $dem++ ?>
                             </th>
                             <td>
-                                <?= $author["ten_tgia"] ?>
+                                <?= $author->getTenTGia() ?>
                             </td>
-                            <td><img src="../images/songs/<?= $author["hinh_tgia"] ?>" alt=""
+                            <td><img src="assets/images/songs/<?= $author->getHinhTGia() ?>" alt=""
                                     style="width: 100px;"></td>
                             <td>
-                                <a href="edit_author.php?id=<?= $author["ma_tgia"] ?>"><i
+                                <a href="?controller=author&action=edit_author&id=<?= $author->getMaTGia() ?>"><i
                                         class="fa-solid fa-pen-to-square"></i></a>
                             </td>
                             <td>
-                                <a href="process_author.php?btn=xoa&id=<?= $author["ma_tgia"] ?>"><i
+                                <a href="?controller=author&action=delete_author&id=<?= $author->getMaTGia() ?>"><i
                                         class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
@@ -50,5 +50,5 @@ require_once('');
 </main>
 
 <?php
-require_once('../includes/footer.php');
+require_once('views/layouts/footer.php');
 ?>
