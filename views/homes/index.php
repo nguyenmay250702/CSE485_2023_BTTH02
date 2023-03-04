@@ -50,8 +50,6 @@ include("views/layouts/header_home.php");
         }
         $articles = $articleService->getAll($sql);
 
-        // var_dump($category);
-
         if (count($articles) > 0) {
             $dem++;
             if ($dem % 2 == 0)

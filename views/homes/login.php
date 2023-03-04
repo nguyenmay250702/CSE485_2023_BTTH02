@@ -15,7 +15,7 @@ include("views/layouts/header_home.php");
                 </div>
             </div>
             <div class="card-body">
-                <form action="includes/process.php" method="post">
+                <form action="" method="post">
                     <div class="input-group mb-3">
                         <span class="input-group-text" id="txtUser"><i class="fas fa-user"></i></span>
                         <input type="text" class="form-control" placeholder="username" name="user"
