@@ -17,8 +17,17 @@ class UserService{
         return $users;
     }
 
-    public function getById(){
-        
+    public function getById($arguments){
+        $database = new Database;
+        $pdo = $database->getConn();   //khởi tạo đối tượng PDO
+        $stmt = $pdo->prepare('SELECT * FROM nguoidung WHERE ma_ndung = :manguoidung');
+        $stmt->execute($arguments);
+
+        $row = $stmt->fetch();
+        $user = new User($row['ma_ndung'],$row['username'],$row['password']);
+
+        $pdo=null; //đóng kết nối
+        return $user;
     }
 
     public function insert(array $arguments){
@@ -43,7 +52,7 @@ class UserService{
         $database = new Database;
         $pdo = $database->getConn();
 
-        $stmt = $pdo->prepare("DELETE `nguoidung`WHERE ma_ndung=:id_user");
+        $stmt = $pdo->prepare("DELETE FROM `nguoidung`WHERE ma_ndung=:id_user");
         $stmt->execute($arguments);
         $pdo=null;
     }
